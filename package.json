@@ -13,8 +13,12 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "plop": "plop"
   },
+  "resolutions": {
+    "string-width": "4.2.3"
+},
   "dependencies": {
     "pinia": "^2.1.7",
     "vue": "^3.4.15",
@@ -37,6 +41,7 @@
     "eslint-plugin-vue": "^9.17.0",
     "jsdom": "^24.0.0",
     "npm-run-all2": "^6.1.1",
+    "plop": "^4.0.1",
     "postcss": "^8.4.35",
     "prettier": "^3.0.3",
     "start-server-and-test": "^2.0.3",
