@@ -5,7 +5,7 @@
         <div class="flex items-center space-x-4">
             <button class=" bg-comerc-btn-gradient text-comerc-blue-750 p-3 rounded-lg hover:opacity-80"
                 @click="navigateTo('/')">
-                <AText>Login</AText>
+                Login
             </button>
             <slot></slot>
         </div>
