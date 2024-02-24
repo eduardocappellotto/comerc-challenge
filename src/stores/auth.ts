@@ -1,7 +1,7 @@
 import type { User } from '@/types/user'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
-const currentUser = ref<User | null>(null)
+const currentUser = ref<Partial<User> | null>(null)
 
 export default function useAuthStore() {
   const storedUserJSON = localStorage.getItem('user')
@@ -16,8 +16,10 @@ export default function useAuthStore() {
     }
   }
 
-  const login = (user: User) => {
-    localStorage.setItem('user', JSON.stringify(user))
+  const isAuthenticated = computed<boolean>(() => !!currentUser.value)
+
+  const login = async (user: Partial<User>) => {
+    await localStorage.setItem('user', JSON.stringify(user))
     currentUser.value = user
   }
 
@@ -29,6 +31,7 @@ export default function useAuthStore() {
   return {
     currentUser,
     login,
-    logout
+    logout,
+    isAuthenticated
   }
 }
