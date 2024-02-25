@@ -1,4 +1,4 @@
-import useAuth from '@/composables/useAuth'
+import { useAuthStore } from '@/stores/auth'
 import type { RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
 
 export function isLoggedInMiddleware(
@@ -6,16 +6,16 @@ export function isLoggedInMiddleware(
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ): void {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated } = useAuthStore()
 
   const publicRoutes = ['Login', 'Register']
 
-  if (!publicRoutes.includes(to.name) && !isAuthenticated.value) {
+  if (!publicRoutes.includes(to.name) && !isAuthenticated) {
     // If user is not logged in and trying to access a route other than login, redirect to login
 
     return next({ name: 'Login' })
   }
-  if (to.name === 'Login' && isAuthenticated.value) {
+  if (to.name === 'Login' && isAuthenticated) {
     // If user is logged in and trying to access login page, redirect to rentals
 
     return next('/rentals')

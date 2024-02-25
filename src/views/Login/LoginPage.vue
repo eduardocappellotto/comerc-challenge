@@ -18,7 +18,7 @@
 import { useSnackbarStore } from '@/stores/snackbar';
 import { useField, useForm } from 'vee-validate';
 import validationSchema from './validation/loginFormValidation';
-import useAuthStore from '@/stores/auth';
+import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
 
 
@@ -44,14 +44,7 @@ const onSubmit = handleSubmit(async () => {
             message: 'Entrou com sucesso!',
             color: 'green',
         });
-        snackbarStore.show({
-            message: 'Entrou com 3!',
-            color: 'green',
-        });
-        snackbarStore.show({
-            message: 'Entrou com 6!',
-            color: 'green',
-        });
+
     } catch (error) {
         snackbarStore.show({
             message: 'Failed to login. Please check your credentials and try again.',

@@ -1,9 +1,10 @@
 import type { User } from '@/types/user'
+import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 const currentUser = ref<Partial<User> | null>(null)
 
-export default function useAuthStore() {
+export const useAuthStore = defineStore('auth', () => {
   const storedUserJSON = localStorage.getItem('user')
   let storedUser: User | null = null
 
@@ -34,4 +35,4 @@ export default function useAuthStore() {
     logout,
     isAuthenticated
   }
-}
+})
