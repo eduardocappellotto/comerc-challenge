@@ -12,15 +12,15 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/users',
     name: 'UserList',
-    component: () => import(/* webpackChunkName: "user-list" */ '../views/UserList.vue'),
+    component: () => import(/* webpackChunkName: "user-list" */ '../views/User/UserList.vue'),
     meta: {
       layout: 'DefaultLayout'
     }
   },
   {
-    path: '/users/:id/edit',
+    path: '/users/manage/:id?',
     name: 'UserEdit',
-    component: () => import(/* webpackChunkName: "user-edit" */ '../views/UserManagement.vue'),
+    component: () => import(/* webpackChunkName: "user-edit" */ '../views/User/UserManagement.vue'),
     meta: {
       layout: 'DefaultLayout'
     }
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/clients',
     name: 'ClientList',
-    component: () => import(/* webpackChunkName: "client-list" */ '../views/ClientList.vue'),
+    component: () => import(/* webpackChunkName: "client-list" */ '../views/Client/ClientList.vue'),
     meta: {
       layout: 'DefaultLayout'
     }
@@ -36,7 +36,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/clients/:id/edit',
     name: 'ClientEdit',
-    component: () => import(/* webpackChunkName: "client-edit" */ '../views/ClientManagement.vue'),
+    component: () =>
+      import(/* webpackChunkName: "client-edit" */ '../views/Client/ClientManagement.vue'),
     meta: {
       layout: 'DefaultLayout'
     }

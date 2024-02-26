@@ -1,9 +1,14 @@
 export interface User {
-  id: number
+  id: string
   username: string
   document: string
   password: string
   status: UserStatus
 }
 
-type UserStatus = 'active' | 'deleted'
+export interface UserLogin {
+  username: string
+  password: string
+}
+
+export type UserStatus = 'active' | 'deleted'
