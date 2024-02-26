@@ -24,14 +24,19 @@ export const useAuthStore = defineStore('auth', () => {
     const userFound = await useUserStore().getUserByUsername(user.username)
 
     if (userFound) {
-      if (userFound.username === user.username && userFound.password === user.password) {
+      if (
+        userFound.username === user.username &&
+        userFound.password === user.password &&
+        userFound.status !== 'deleted' &&
+        !userFound.deleted
+      ) {
         await localStorage.setItem('user', JSON.stringify(user))
         currentUser.value = user
 
         return
       }
     }
-    throw new Error('Invalid Credentials')
+    throw new Error('Usuário/Senha errados e/ou Usuário Inativo!')
   }
 
   const logout = () => {
