@@ -5,8 +5,6 @@
         <main class="flex-grow h-full">
             <router-view></router-view>
         </main>
-
-        <CFooter />
     </div>
 </template>
   

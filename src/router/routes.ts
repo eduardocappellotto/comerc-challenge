@@ -4,15 +4,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/LoginPage.vue'),
-    meta: {
-      layout: 'AuthLayout'
-    }
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/RegisterPage.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login/LoginPage.vue'),
     meta: {
       layout: 'AuthLayout'
     }
@@ -20,41 +12,42 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/users',
     name: 'UserList',
-    component: () => import(/* webpackChunkName: "user-list" */ '../views/UserList.vue'),
+    component: () => import(/* webpackChunkName: "user-list" */ '../views/User/UserList.vue'),
     meta: {
-      layout: 'Default'
+      layout: 'DefaultLayout'
     }
   },
   {
-    path: '/users/:id/edit',
+    path: '/users/manage/:id?',
     name: 'UserEdit',
-    component: () => import(/* webpackChunkName: "user-edit" */ '../views/UserManagement.vue'),
+    component: () => import(/* webpackChunkName: "user-edit" */ '../views/User/UserManagement.vue'),
     meta: {
-      layout: 'Default'
+      layout: 'DefaultLayout'
     }
   },
   {
     path: '/clients',
     name: 'ClientList',
-    component: () => import(/* webpackChunkName: "client-list" */ '../views/ClientList.vue'),
+    component: () => import(/* webpackChunkName: "client-list" */ '../views/Client/ClientList.vue'),
     meta: {
-      layout: 'Default'
+      layout: 'DefaultLayout'
     }
   },
   {
     path: '/clients/:id/edit',
     name: 'ClientEdit',
-    component: () => import(/* webpackChunkName: "client-edit" */ '../views/ClientManagement.vue'),
+    component: () =>
+      import(/* webpackChunkName: "client-edit" */ '../views/Client/ClientManagement.vue'),
     meta: {
-      layout: 'Default'
+      layout: 'DefaultLayout'
     }
   },
   {
     path: '/movies',
     name: 'MovieList',
-    component: () => import(/* webpackChunkName: "movie-list" */ '../views/MovieList.vue'),
+    component: () => import(/* webpackChunkName: "movie-list" */ '../views/Movie/MovieList.vue'),
     meta: {
-      layout: 'Default'
+      layout: 'DefaultLayout'
     }
   },
   {
@@ -62,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'RentalList',
     component: () => import(/* webpackChunkName: "rental-list" */ '../views/RentalList.vue'),
     meta: {
-      layout: 'Default'
+      layout: 'DefaultLayout'
     }
   },
   {
@@ -70,7 +63,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'NewRental',
     component: () => import(/* webpackChunkName: "new-rental" */ '../views/RentalManagement.vue'),
     meta: {
-      layout: 'Default'
+      layout: 'DefaultLayout'
     }
   }
 ]
