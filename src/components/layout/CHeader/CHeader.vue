@@ -7,7 +7,7 @@
                 <div class="space-x-4 space-y-2" v-if="isAuthenticated">
                     <button v-for="button in navigationButtons" :key="button.route"
                         class="bg-comerc-btn-gradient text-comerc-blue-750 p-2 rounded-lg hover:opacity-80"
-                        @click="navigateTo(button.route)">
+                        @click="router.push(button.route)">
                         {{ button.label }}
                     </button>
                     <button v-if="isAuthenticated"
@@ -29,13 +29,11 @@ import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
 const { isAuthenticated } = storeToRefs(authStore)
-const { login, logout } = authStore
+const { logout } = authStore
 
 const snackbarStore = useSnackbarStore();
 
 const router = useRouter();
-
-
 
 const navigationButtons = [
     { label: 'Filmes', route: '/movies' },
@@ -45,9 +43,7 @@ const navigationButtons = [
 
 ];
 
-const navigateTo = async (route: string) => {
-    await router.push({ path: route });
-};
+
 
 const logoutUser = async () => {
     logout()

@@ -39,15 +39,16 @@ const onSubmit = handleSubmit(async () => {
             username: username.value,
             password: password.value
         });
-        router.push("/movies");
+        router.push("/movies")
         snackbarStore.show({
             message: 'Entrou com sucesso!',
             color: 'green',
         });
 
     } catch (error) {
+
         snackbarStore.show({
-            message: 'Failed to login. Please check your credentials and try again.',
+            message: error.message,
             color: 'red',
         });
         clearFields();
