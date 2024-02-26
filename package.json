@@ -20,7 +20,9 @@
     "string-width": "4.2.3"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@vee-validate/zod": "^4.12.5",
+    "faker": "^6.6.6",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.1.7",
     "uuid": "^9.0.1",
