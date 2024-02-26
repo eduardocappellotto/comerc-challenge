@@ -1,12 +1,10 @@
 <template>
-    <transition-group name="snackbar" tag="div"
-        class="fixed top-0 left-0 right-0 flex justify-center flex-col items-center p-4 z-50">
-        <div v-for="message in messages" :key="message.id" class="bg-green-500 text-black rounded-md p-4 mb-4 shadow-lg">
-            {{ message.message }}
-            <button v-if="message.id" @click="dismiss(message.id)"
-                class="float-right text-black font-bold mx-2">&times;</button>
-        </div>
-    </transition-group>
+    <div v-for="message in messages" :key="message.id" :class="snackBarClass"
+        class=" fixed top-10 left-10 text-black rounded-md p-4 mb-4 shadow-lg  bg-red-600">
+        {{ message.message }}
+        <button v-if="message.id" @click="dismiss(message.id)"
+            class="float-right text-black font-bold mx-2">&times;</button>
+    </div>
 </template>
 
   
@@ -21,6 +19,10 @@ const { messages } = storeToRefs(snackbarStore);
 const dismiss = (id: number) => {
     snackbarStore.dismiss(id);
 };
+
+const snackBarClass = (color: string) => {
+    return `bg-${color}-600`
+}
 </script>
   
 <style scoped>

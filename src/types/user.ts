@@ -4,6 +4,7 @@ export interface User {
   document: string
   password: string
   status: UserStatus
+  deleted?: boolean
 }
 
 export interface UserLogin {

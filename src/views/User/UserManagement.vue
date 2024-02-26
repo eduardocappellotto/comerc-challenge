@@ -55,7 +55,7 @@ const { value: document } = useField<string>('document');
 const { value: status } = useField<string>('status');
 
 const cancelForm = () => {
-    router.push('/users');
+    router.push("/users")
 };
 
 onMounted(() => {
@@ -84,7 +84,7 @@ const submitForm = handleSubmit(async () => {
                 message: 'Atualizado com sucesso!',
                 color: 'green',
             });
-            router.push('/users');
+            router.push("/users")
         }
         if (!editUserId) {
             await userStore.createUser({
@@ -99,7 +99,7 @@ const submitForm = handleSubmit(async () => {
                 color: 'green',
             });
 
-            router.push('/users');
+            router.push("/users")
         }
     } catch (error) {
         snackbarStore.show({

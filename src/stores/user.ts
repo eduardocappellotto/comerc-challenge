@@ -1,6 +1,6 @@
-import { ref, toRaw } from 'vue'
-import type { User } from '@/types/user'
 import { defineStore } from 'pinia'
+import { computed, ref } from 'vue'
+import type { User } from '@/types/user'
 import { generateUsers } from '@/utils/mocks/generateUsers'
 
 const users = ref<User[]>([
@@ -30,22 +30,18 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const getUserById = (id: string): Partial<User> | null => {
-    const user = users.value.find((user) => user.id == id)
-
+    const user = usersList.value.find((user) => user.id == id)
     if (user && user.id) {
       return user
     }
-
     return null
   }
 
   const getUserByUsername = (username: string): Partial<User> | null => {
-    const user = users.value.find((user) => user.username == username)
-
-    if (user) {
+    const user = usersList.value.find((user) => user.username == username)
+    if (user && user.username) {
       return user
     }
-
     return null
   }
 
@@ -70,20 +66,25 @@ export const useUserStore = defineStore('user', () => {
     return null
   }
 
-  const deleteUser = (userId: string): void => {
+  const softDeleteUser = (userId: string): void => {
     const userIndex = users.value.findIndex((user) => user.id === userId)
     if (userIndex !== -1) {
-      users.value.splice(userIndex, 1)
+      users.value[userIndex].deleted = true
       saveUsersToLocalStorage()
     }
   }
 
+  const usersList = computed<User[]>(() => {
+    return users.value.filter((user) => !user.deleted) || []
+  })
+
   return {
     users,
+    usersList,
     getUserById,
     getUserByUsername,
     createUser,
     updateUser,
-    deleteUser
+    softDeleteUser
   }
 })

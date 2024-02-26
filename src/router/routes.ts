@@ -34,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/clients/:id/edit',
+    path: '/clients/manage/:id?',
     name: 'ClientEdit',
     component: () =>
       import(/* webpackChunkName: "client-edit" */ '../views/Client/ClientManagement.vue'),

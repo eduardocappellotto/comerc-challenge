@@ -7,7 +7,7 @@
                 class="border border-gray-300 rounded py-2 px-3" />
 
             <button class="  bg-comerc-btn-gradient text-black py-2 px-3 rounded hover:opacity-80"
-                @click="navigateTo('/users/manage')">
+                @click="router.push('/users/manage')">
                 Criar Usuário
             </button>
         </div>
@@ -34,7 +34,7 @@
 
 
                         </td>
-                        <td class="border space-x-2 px-4 py-2 ">
+                        <td class="border space-x-2 space-y-2 px-4 py-2 ">
                             <button class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
                                 @click="editUser(user.id)" :disabled="user.id === 'admin'">
                                 Editar
@@ -55,8 +55,10 @@
 import { computed, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 
-import { useRouter } from 'vue-router';
 import { useSnackbarStore } from '@/stores/snackbar';
+
+
+import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const userStore = useUserStore();
@@ -65,23 +67,20 @@ const searchQuery = ref('');
 
 const filteredUsers = computed(() => {
     if (!searchQuery.value) {
-        return userStore.users;
+        return userStore.users.filter(user => !user.deleted);
     }
     return userStore.users.filter((user) =>
-        user.username.toLowerCase().includes(searchQuery.value.toLowerCase())
+        user.username.toLowerCase().includes(searchQuery.value.toLowerCase()) && !user.deleted
     );
 });
 
-const navigateTo = async (route: string) => {
-    await router.push({ path: route });
-};
 
 const editUser = (userId: string) => {
-    navigateTo(`/users/manage/${userId}`)
+    router.push(`/users/manage/${userId}`)
 };
 
 const deleteUser = (userId: string) => {
-    userStore.deleteUser(userId);
+    userStore.softDeleteUser(userId);
     snackbarStore.show({
         message: 'Excluido com sucesso!',
         color: 'green',

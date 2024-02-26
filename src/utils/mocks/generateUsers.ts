@@ -1,12 +1,5 @@
+import type { User } from '@/types/user'
 import { faker } from '@faker-js/faker'
-
-interface User {
-  id: string
-  username: string
-  document: string
-  status: 'active' | 'deleted'
-  password: string
-}
 
 const users: User[] = []
 
@@ -17,7 +10,8 @@ export const generateUsers = (count: number): User[] => {
       username: faker.internet.userName(),
       document: faker.string.numeric(11),
       status: faker.helpers.arrayElement(['active', 'deleted']),
-      password: faker.internet.password()
+      password: faker.internet.password(),
+      deleted: false
     }
 
     users.push(user)
