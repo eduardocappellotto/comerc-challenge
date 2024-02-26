@@ -48,7 +48,7 @@ const onSubmit = handleSubmit(async () => {
     } catch (error) {
         snackbarStore.show({
             message: 'Failed to login. Please check your credentials and try again.',
-            color: 'error',
+            color: 'red',
         });
         clearFields();
     }

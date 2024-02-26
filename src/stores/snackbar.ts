@@ -11,7 +11,7 @@ interface SnackbarMessage {
 export const useSnackbarStore = defineStore('snackbar', () => {
   const messages = ref([] as SnackbarMessage[])
 
-  function show({ message, color = 'info', timeout = 60000 }: SnackbarMessage) {
+  function show({ message, color = 'info', timeout = 3000 }: SnackbarMessage) {
     const id = Date.now()
     messages.value.push({ id, message, color, timeout })
     setTimeout(() => {

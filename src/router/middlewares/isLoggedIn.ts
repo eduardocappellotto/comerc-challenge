@@ -10,7 +10,7 @@ export function isLoggedInMiddleware(
 
   const publicRoutes = ['Login', 'Register']
 
-  if (!publicRoutes.includes(to.name) && !isAuthenticated) {
+  if (typeof to.name === 'string' && !publicRoutes.includes(to.name) && !isAuthenticated) {
     // If user is not logged in and trying to access a route other than login, redirect to login
 
     return next({ name: 'Login' })
