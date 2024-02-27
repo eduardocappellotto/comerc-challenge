@@ -82,7 +82,7 @@ const submitForm = handleSubmit(async () => {
 
             snackbarStore.show({
                 message: 'Atualizado com sucesso!',
-                color: 'green',
+                color: 'success',
             });
             router.push("/users")
         }
@@ -96,7 +96,7 @@ const submitForm = handleSubmit(async () => {
 
             snackbarStore.show({
                 message: 'Salvo com sucesso!',
-                color: 'green',
+                color: 'success',
             });
 
             router.push("/users")
@@ -104,7 +104,7 @@ const submitForm = handleSubmit(async () => {
     } catch (error) {
         snackbarStore.show({
             message: 'Erro ao salvar, tente novamente!',
-            color: 'red',
+            color: 'error',
         });
     }
 

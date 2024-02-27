@@ -1,13 +1,15 @@
+import type { Client } from './client'
 import type { Movie } from './movie'
+import type { User } from './user'
 
 export interface Rental {
-  id: number
-  clientId: number
+  id: string
+  client: Client
   movies: Movie[]
-  rentalDate: string
-  returnDate: string
-  userId: number
+  rentalDate: number
+  returnDate: number
+  locatedBy: User
   status: RentalStatus
 }
 
-type RentalStatus = 'rented' | 'returned'
+export type RentalStatus = 'rented' | 'returned'

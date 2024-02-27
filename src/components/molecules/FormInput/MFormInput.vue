@@ -27,12 +27,10 @@ const props = defineProps<{
 
 }>();
 const model = defineModel()
-// For toggling password visibility
 const passwordVisible = ref<boolean>(false);
 const togglePasswordVisibility = () => {
     passwordVisible.value = !passwordVisible.value;
 }
-// Computed property to determine the actual input type (password or text)
 const inputType = computed(() => {
     return passwordVisible.value ? 'text' : props.type;
 });

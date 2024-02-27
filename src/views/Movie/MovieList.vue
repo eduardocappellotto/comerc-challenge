@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto p-4">
-        <h1 class="font-bold text-2xl my-8">Listagem de Filmes</h1>
+        <h1 class="font-bold text-2xl my-8">Filmes</h1>
         <div class="mb-6 flex flex-wrap justify-center items-center space-x-6 space-y-2">
             <input type="text" v-model="searchQuery" placeholder="Pesquisar filmes..."
                 class="border border-gray-300 px-4 py-2 rounded-lg   ">

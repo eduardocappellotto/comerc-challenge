@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import type { Client } from '@/types/client'
 import { generateClients } from '@/utils/mocks/generateClients'
 
@@ -15,6 +15,8 @@ export const useClientStore = defineStore('client', () => {
       throw new Error('Error parsing stored clients data:' + error)
     }
   }
+
+  const getClients = computed(() => clients.value.filter((client) => !client.deleted))
 
   const saveClientsToLocalStorage = () => {
     localStorage.setItem('clients', JSON.stringify(clients.value))
@@ -45,11 +47,15 @@ export const useClientStore = defineStore('client', () => {
     }
   }
 
+  onMounted(saveClientsToLocalStorage)
+
   return {
     clients,
+    getClients,
     getClientById,
     createClient,
     updateClient,
-    softDeleteClient
+    softDeleteClient,
+    saveClientsToLocalStorage
   }
 })

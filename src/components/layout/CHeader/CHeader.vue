@@ -46,12 +46,21 @@ const navigationButtons = [
 
 
 const logoutUser = async () => {
-    logout()
-    snackbarStore.show({
-        message: "Saiu com sucesso!",
-        color: "green"
-    })
-    router.push("/")
+    try {
+
+        logout()
+        snackbarStore.show({
+            message: "Saiu com sucesso!",
+            color: 'success'
+        })
+        router.push({ name: "Login" })
+
+    } catch (error) {
+        snackbarStore.show({
+            message: "Erro ao sair!",
+            color: 'error'
+        })
+    }
 }
 
 </script>

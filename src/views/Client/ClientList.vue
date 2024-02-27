@@ -1,8 +1,6 @@
 <template>
     <div class="container mx-auto p-4">
-        <h1 class="font-bold text-2xl my-8">Listagem de Clientes</h1>
-
-
+        <h1 class="font-bold text-2xl my-8">Clientes</h1>
         <div class="flex justify-between items-center mb-4 flex-wrap space-x-4 space-y-2">
             <input type="text" v-model="searchQuery" placeholder="Pesquisar por nome/cpf"
                 class="p-2 border border-gray-300 rounded py-2 px-3" />
@@ -52,18 +50,21 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useClientStore } from '@/stores/client';
+import { useSnackbarStore } from '@/stores/snackbar';
+
 import { useRouter } from 'vue-router'
 
 const router = useRouter();
 const clientStore = useClientStore();
+const snackbarStore = useSnackbarStore()
 const searchQuery = ref('');
 
 const filteredClients = computed(() => {
     if (!searchQuery.value) {
-        return clientStore.clients;
+        return clientStore.getClients;
     }
     const query = searchQuery.value.toLowerCase();
-    return clientStore.clients.filter(client =>
+    return clientStore.getClients.filter(client =>
         client.name.toLowerCase().includes(query) ||
         client.surname.toLowerCase().includes(query) ||
         client.cpf.includes(query)
@@ -75,13 +76,17 @@ const censoredCPF = (cpf: string) => {
     return cpf.substring(0, 3) + '***.***.***-**';
 };
 
-
 const editClient = (clientId: string) => {
-    // implement     it functionality
+    router.push(`/users/manage/${clientId}`)
 };
 
 const deleteClient = (clientId: string) => {
+    clientStore.softDeleteClient(clientId)
 
+    snackbarStore.show({
+        message: "Cliente excluído com sucesso!",
+        color: 'success'
+    })
 };
 </script>
  

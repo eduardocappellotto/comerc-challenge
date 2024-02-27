@@ -100,7 +100,7 @@ const debounceFetchAddress = () => {
         } catch (error) {
             console.error('Error fetching address:', error);
         }
-    }, 600); // 600ms debounce time
+    }, 600);
 };
 
 onMounted(() => {
@@ -131,10 +131,11 @@ const submitForm = handleSubmit(async () => {
             });
             snackbarStore.show({
                 message: 'Cliente atualizado com sucesso!',
-                color: 'green',
+                color: 'success',
             });
         } else {
             await clientStore.createClient({
+                id: String(new Date().valueOf()),
                 name: name.value,
                 surname: surname.value,
                 cpf: cpf.value,
@@ -146,18 +147,20 @@ const submitForm = handleSubmit(async () => {
                     zipcode: zipcode.value,
                     city: city.value,
                     state: state.value,
+                    street: street.value,
+                    neighborhood: neighborhood.value
                 },
             });
             snackbarStore.show({
                 message: 'Cliente criado com sucesso!',
-                color: 'green',
+                color: 'success',
             });
         }
         router.push("/clients");
     } catch (error) {
         snackbarStore.show({
             message: 'Erro ao salvar cliente, tente novamente!',
-            color: 'red',
+            color: 'error',
         });
     }
 });

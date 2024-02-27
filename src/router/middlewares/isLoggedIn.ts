@@ -6,7 +6,7 @@ export function isLoggedInMiddleware(
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ): void {
-  const { isAuthenticated } = useAuthStore()
+  const { isAuthenticated, currentUser } = useAuthStore()
 
   const publicRoutes = ['Login', 'Register']
 
