@@ -1,68 +1,52 @@
-# comerc-challenge
+# Gerenciamento de Locadora de Filmes 🎬
 
-This template should help get you started developing with Vue 3 in Vite.
+Este projeto é uma aplicação web desenvolvida para gerenciar uma locadora de filmes. Foi construído utilizando Vue.js 3, Tailwind CSS, Typescript e Docker. A aplicação permite o cadastro, edição, listagem e desativação de usuários, clientes e locações. Além disso, integra-se com a API da OMDb para obter informações sobre filmes.
 
-## Recommended IDE Setup
+## Funcionalidades 🛠️
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Cadastro, edição, listagem e desativação de usuários
+- Cadastro, edição, listagem e desativação de clientes
+- Consumo da API da OMDb para obtenção de informações sobre filmes
+- Registro de novas locações e listagem das locações existentes
 
-## Type Support for `.vue` Imports in TS
+## Detalhes de Implementação 🚀
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- Utilização extensiva de Vue.js 3 e Tailwind CSS
+- Integração com a API ViaCEP para obtenção de informações de endereço a partir do CEP
+- Armazenamento de usuários, clientes e locações no local storage do navegador
+- Persistência do login dos usuários entre sessões
+- Feedback visual de sucesso ou falha após qualquer alteração
+- Restrição de acesso para usuários desativados
+- Restrição para clientes com locação ativa realizarem outra locação
+- Nomenclatura seguindo o padrão americano
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Faltas e Melhorias 🚧
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- Adicionar mais testes unitários para garantir a qualidade do código
+- Melhorar a aplicação do Atomic Design na estrutura dos componentes
+- Criar um componente de tabela com paginação para uma melhor experiência de usuário
+- Refinar a responsividade da aplicação
 
-## Customize configuration
+## Rodando a Aplicação ▶️
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Para executar a aplicação, basta seguir os seguintes passos:
 
-## Project Setup
+1. Certifique-se de ter o Docker instalado em sua máquina.
+2. Clone o repositório para o seu ambiente local.
+3. Navegue até o diretório do projeto.
+4. Execute o comando `docker-compose up --build`.
+5. Aguarde até que o processo de construção e inicialização do container Docker seja concluído.
+6. Acesse a aplicação através do navegador, geralmente em `http://localhost:8080`.
+7. - O usuário admin é:
 
-```sh
-npm install
-```
+- **Usuário:** admin
+- **Senha:** admin
 
-### Compile and Hot-Reload for Development
+## Observações 📝
 
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- A aplicação foi desenvolvida com layouts e views bem definidas.
+- Utilizou-se autenticação de rotas para controlar o acesso às diferentes partes da aplicação.
+- Validou-se os formulários utilizando Veelidate + ZOD.
+- O uso de CSS foi minimizado em favor do Tailwind CSS.
+- Todos os componentes estão devidamente separados e responsivos.
+- Foi utilizado o `faker.js` para gerar mocks de dados.
