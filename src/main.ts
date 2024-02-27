@@ -6,9 +6,28 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+import { registerComponents } from './components/register'
+import { registerLayouts } from './layouts/register'
+import { registerViews } from './views/register'
 
-app.use(createPinia())
-app.use(router)
+import { OhVueIcon, addIcons } from 'oh-vue-icons'
+import * as RiIcons from 'oh-vue-icons/icons/ri'
 
-app.mount('#app')
+const Ri = Object.values({ ...RiIcons })
+addIcons(...Ri)
+
+const createVueApp = async () => {
+  const app = createApp(App)
+
+  app.component('v-icon', OhVueIcon)
+  app.use(createPinia())
+  app.use(router)
+
+  await registerLayouts(app)
+  await registerComponents(app)
+  await registerViews(app)
+
+  app.mount('#app')
+}
+
+createVueApp()

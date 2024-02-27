@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
@@ -13,12 +13,24 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "plop": "plop"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@vee-validate/zod": "^4.12.5",
+    "axios": "^1.6.7",
+    "faker": "^6.6.6",
+    "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.1.7",
+    "uuid": "^9.0.1",
+    "vee-validate": "^4.12.5",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.3.3",
@@ -30,14 +42,18 @@
     "@vue/eslint-config-typescript": "^12.0.0",
     "@vue/test-utils": "^2.4.4",
     "@vue/tsconfig": "^0.5.1",
+    "autoprefixer": "^10.4.17",
     "cypress": "^13.6.3",
     "eslint": "^8.49.0",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-vue": "^9.17.0",
     "jsdom": "^24.0.0",
     "npm-run-all2": "^6.1.1",
+    "plop": "^4.0.1",
+    "postcss": "^8.4.35",
     "prettier": "^3.0.3",
     "start-server-and-test": "^2.0.3",
+    "tailwindcss": "^3.4.1",
     "typescript": "~5.3.0",
     "vite": "^5.0.11",
     "vitest": "^1.2.2",
