@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { useUserStore } from './user'
 
-const currentUser = ref<Partial<User> | null>(null)
+const currentUser = ref<Partial<User>>()
 
 export const useAuthStore = defineStore('auth', () => {
   const storedUserJSON = localStorage.getItem('user')
@@ -12,13 +12,13 @@ export const useAuthStore = defineStore('auth', () => {
   if (storedUserJSON) {
     try {
       storedUser = JSON.parse(storedUserJSON)
-      currentUser.value = storedUser
+      currentUser.value = storedUser!
     } catch (error) {
       console.error('Error parsing stored user data:', error)
     }
   }
 
-  const isAuthenticated = computed<boolean>(() => !!currentUser.value)
+  const isAuthenticated = computed<boolean>(() => !!currentUser.value?.username)
 
   const login = async (user: UserLogin) => {
     const userFound = await useUserStore().getUserByUsername(user.username)
@@ -41,7 +41,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const logout = () => {
     localStorage.removeItem('user')
-    currentUser.value = null
+    currentUser.value = {}
   }
 
   return {
