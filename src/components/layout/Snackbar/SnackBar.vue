@@ -1,15 +1,12 @@
 <template>
-    <div v-for="message in messages" :key="message.id" :class="snackBarClass"
-        class=" fixed top-10 left-10 text-black rounded-md p-4 mb-4 shadow-lg  bg-red-600">
+    <div v-for="message in messages" :key="message.id"
+        :class="[message.color, 'fixed top-10 left-10 text-white rounded-md p-4 mb-4 shadow-lg']">
         {{ message.message }}
         <button v-if="message.id" @click="dismiss(message.id)"
-            class="float-right text-black font-bold mx-2">&times;</button>
+            class="float-right text-white font-bold mx-2">&times;</button>
     </div>
 </template>
 
-  
- 
-  
 <script setup lang="ts">
 import { useSnackbarStore } from '@/stores/snackbar';
 import { storeToRefs } from 'pinia';
@@ -24,7 +21,7 @@ const snackBarClass = (color: string) => {
     return `bg-${color}-600`
 }
 </script>
-  
+
 <style scoped>
 .snackbar-enter-active,
 .snackbar-leave-active {
@@ -35,4 +32,15 @@ const snackBarClass = (color: string) => {
 .snackbar-leave-to {
     opacity: 0;
 }
+
+/* Dynamically apply background color */
+.error {
+    @apply bg-red-600;
+}
+
+.success {
+    @apply bg-green-600;
+}
+
+/* Add other color classes as needed */
 </style>

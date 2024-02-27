@@ -53,15 +53,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/rentals',
     name: 'RentalList',
-    component: () => import(/* webpackChunkName: "rental-list" */ '../views/RentalList.vue'),
+    component: () => import(/* webpackChunkName: "rental-list" */ '../views/Rental/RentalList.vue'),
     meta: {
       layout: 'DefaultLayout'
     }
   },
   {
-    path: '/rentals/new',
+    path: '/rentals/manage/:id?',
     name: 'NewRental',
-    component: () => import(/* webpackChunkName: "new-rental" */ '../views/RentalManagement.vue'),
+    component: () =>
+      import(/* webpackChunkName: "new-rental" */ '../views/Rental/RentalManagement.vue'),
     meta: {
       layout: 'DefaultLayout'
     }

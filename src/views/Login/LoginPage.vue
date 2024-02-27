@@ -42,14 +42,14 @@ const onSubmit = handleSubmit(async () => {
         router.push("/movies")
         snackbarStore.show({
             message: 'Entrou com sucesso!',
-            color: 'green',
+            color: 'success',
         });
 
     } catch (error) {
 
         snackbarStore.show({
             message: error.message,
-            color: 'red',
+            color: 'error',
         });
         clearFields();
     }

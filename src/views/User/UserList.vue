@@ -1,7 +1,7 @@
  
 <template>
     <div class="container mx-auto p-4">
-        <h1 class="font-bold text-2xl my-8">Listagem de Usuários</h1>
+        <h1 class="font-bold text-2xl my-8">Usuários</h1>
         <div class="flex justify-between items-center mb-4 flex-wrap space-x-4 space-y-2">
             <input type="text" placeholder="Pesquisar..." v-model="searchQuery"
                 class="border border-gray-300 rounded py-2 px-3" />
@@ -67,10 +67,10 @@ const searchQuery = ref('');
 
 const filteredUsers = computed(() => {
     if (!searchQuery.value) {
-        return userStore.users.filter(user => !user.deleted);
+        return userStore.usersList
     }
-    return userStore.users.filter((user) =>
-        user.username.toLowerCase().includes(searchQuery.value.toLowerCase()) && !user.deleted
+    return userStore.usersList.filter((user) =>
+        user.username.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
 });
 
@@ -83,7 +83,7 @@ const deleteUser = (userId: string) => {
     userStore.softDeleteUser(userId);
     snackbarStore.show({
         message: 'Excluido com sucesso!',
-        color: 'green',
+        color: 'success',
     });
 
 };
