@@ -16,13 +16,18 @@ import * as RiIcons from 'oh-vue-icons/icons/ri'
 const Ri = Object.values({ ...RiIcons })
 addIcons(...Ri)
 
-const app = createApp(App)
+const createVueApp = async () => {
+  const app = createApp(App)
 
-app.component('v-icon', OhVueIcon)
-app.use(createPinia())
-app.use(router)
-await registerLayouts(app)
-await registerComponents(app)
-await registerViews(app)
+  app.component('v-icon', OhVueIcon)
+  app.use(createPinia())
+  app.use(router)
 
-app.mount('#app')
+  await registerLayouts(app)
+  await registerComponents(app)
+  await registerViews(app)
+
+  app.mount('#app')
+}
+
+createVueApp()
